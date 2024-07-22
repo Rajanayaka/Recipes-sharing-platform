@@ -1,5 +1,8 @@
-import { MongoClient } from 'mongodb';
+// lib/mongodb.ts
 
+import { MongoClient, Db } from 'mongodb';
+
+// Ensure the MongoDB URI is provided
 if (!process.env.MONGODB_URI) {
     throw new Error('Please add your Mongo URI to .env.local');
 }
@@ -9,6 +12,11 @@ const options = {};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
+
+// Add a global declaration for TypeScript
+declare global {
+    var _mongoClientPromise: Promise<MongoClient>;
+}
 
 if (process.env.NODE_ENV === 'development') {
     // In development mode, use a global variable so the MongoClient is not repeatedly created.
@@ -23,7 +31,7 @@ if (process.env.NODE_ENV === 'development') {
     clientPromise = client.connect();
 }
 
-export async function connectToDatabase() {
+export async function connectToDatabase(): Promise<Db> {
     const client = await clientPromise;
     return client.db();
 }

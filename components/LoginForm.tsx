@@ -1,4 +1,3 @@
-// pages/login.tsx
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc'; // Google icon
@@ -42,6 +41,18 @@ const LoginForm: React.FC = () => {
               className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-green-500 focus:border-green-500 w-full"
             />
           </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password*</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-green-500 focus:border-green-500 w-full"
+            />
+          </div>
           <button
             type="submit"
             className="w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
@@ -50,7 +61,7 @@ const LoginForm: React.FC = () => {
           </button>
         </form>
         <div className="text-center mt-4">
-          <span className="text-gray-600">Don't have an account? </span>
+          <span className="text-gray-600">Don&apos;t have an account? </span>
           <Link href="/signup" legacyBehavior>
             <a className="text-green-500 hover:underline">Sign Up</a>
           </Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Recipe = {
   id: string;
@@ -38,7 +39,7 @@ const TrendingRecipes: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {trendingRecipes.map((recipe) => (
           <div key={recipe.id} className="border p-4 rounded-lg">
-            <img src={recipe.imageUrl} alt={recipe.title} className="w-full h-40 object-cover mb-2 rounded" />
+            <Image src={recipe.imageUrl} alt={recipe.title} className="w-full h-40 object-cover mb-2 rounded"/>
             <h3 className="text-xl font-semibold">{recipe.title}</h3>
             <Link href={`/recipes/${recipe.id}`} className="text-blue-500 mt-2 block">View Recipe</Link>
           </div>
